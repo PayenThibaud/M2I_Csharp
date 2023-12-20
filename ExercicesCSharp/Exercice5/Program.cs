@@ -1,6 +1,6 @@
 ﻿Console.Write("Veuillez saisir un nombre: ");
-int nombre1 = Convert.ToInt32(Console.ReadLine());
+double nombre1 = Convert.ToDouble(Console.ReadLine());
 Console.Write("Veuillez saisir un nombre: ");
-int nombre2 = Convert.ToInt32(Console.ReadLine());
-int somme = nombre1 + nombre2;
+double nombre2 = Convert.ToDouble(Console.ReadLine());
+double somme = nombre1 + nombre2;
 Console.WriteLine("La somme de ces deux nombre est : " + somme);
