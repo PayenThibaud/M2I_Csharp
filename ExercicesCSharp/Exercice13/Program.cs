@@ -1,35 +1,46 @@
 ﻿Console.WriteLine("--- Dans quelle catégorie mon enfant est-il... ? ---");
-Console.Write("Entrez l'âge de votre enfant : ");
-string nombre = Console.ReadLine();
+Console.Write("Entrez la longueur du segment AB : ");
+string nombreAB = Console.ReadLine();
+Console.Write("Entrez la longueur du segment BC : ");
+string nombreBC = Console.ReadLine();
+Console.Write("Entrez la longueur du segment CA : ");
+string nombreCA = Console.ReadLine();
 
-if (int.TryParse(nombre, out int age))
-    if (age >= 18)
+if (double.TryParse(nombreAB, out double AB) &&
+    double.TryParse(nombreBC, out double BC) &&
+    double.TryParse(nombreCA, out double CA))
+{
+    if (AB == BC && BC == CA)
     {
-        Console.WriteLine("votre fils à déjà + de 18 ans !");
-    }
-    else if (age >= 13)
-    {
-        Console.WriteLine("Votre enfant est dans la catégorie \"Cadet\" !");
-    }
-    else if (age >= 11)
-    {
-        Console.WriteLine("Votre enfant est dans la catégorie \"Minime\" !");
-    }
-    else if (age >= 9)
-    {
-        Console.WriteLine("Votre enfant est dans la catégorie \"Pupille\" !");
-    }
-    else if (age >= 7)
-    {
-        Console.WriteLine("Votre enfant est dans la catégorie \"Poussin\" !");
-    }
-    else if (age >= 3)
-    {
-        Console.WriteLine("Votre enfant est dans la catégorie \"Baby\" !");
+        Console.WriteLine("Le Triangle est équilatérale");
     }
     else
     {
-        Console.WriteLine("Votre enfant est encore un bébé !");
+        if (AB == CA)
+        {
+            Console.WriteLine("Le Triangle est isocèle en A, mais n'est pas équilatérale");
+        }
+        else
+        {
+            if (AB == BC)
+            {
+                Console.WriteLine("Le Triangle est isocèle en B, mais n'est pas équilatérale");
+            }
+            else
+            {
+                if (CA == BC)
+                {
+                    Console.WriteLine("Le Triangle est isocèle en C, mais n'est pas équilatérale");
+                }
+                else
+                {
+                    Console.WriteLine("Le Triangle n'est pas isocèle ni équilatérale");
+                }
+            }
+        }
     }
+}
 else
-    Console.WriteLine("Rentrez un age !");
+{
+    Console.WriteLine("Rentrez des longueurs valides !");
+}
