@@ -8,26 +8,26 @@ if (double.TryParse(nombreAge, out double age))
 
     switch (age)
     {
-        case <=2:
+        case <= 2:
             Console.WriteLine("Veuillez entrer un âge valide.");
             break;
-        case <=6:
+        case <= 6:
             categorie = "Baby";
             break;
 
-        case <=8:
+        case <= 8:
             categorie = "Poussin";
             break;
 
-        case <=10:
+        case <= 10:
             categorie = "Pupille";
             break;
 
-        case <=12:
+        case <= 12:
             categorie = "Minime";
             break;
 
-        case <=18:
+        case <= 18:
             categorie = "Cadet";
             break;
 
@@ -37,7 +37,7 @@ if (double.TryParse(nombreAge, out double age))
     }
 
     if (categorie != "error")
-    Console.WriteLine("Votre enfant est dans la catégorie \"" + categorie + "\" !");
+        Console.WriteLine("Votre enfant est dans la catégorie \"" + categorie + "\" !");
 }
 else
 {
