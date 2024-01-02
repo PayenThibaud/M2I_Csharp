@@ -1,7 +1,6 @@
 ﻿double bon = 0;
 double nul = 20;
 double moyenne = 0;
-
 int i = 0;
 while (i >= 0)
 {
@@ -67,7 +66,7 @@ while (i >= 0)
         Console.WriteLine("");
         Console.WriteLine("La note la plus grande est :" + bon);
         Console.WriteLine("");
-        Console.ForegroundColor = ConsoleColor.White;
+        Console.ResetColor();
     }
 
     if (rep == "c")
@@ -78,7 +77,7 @@ while (i >= 0)
         Console.WriteLine("");
         Console.WriteLine("La note la plus petite est :" + nul);
         Console.WriteLine("");
-        Console.ForegroundColor = ConsoleColor.White;
+        Console.ResetColor();
     }
 
     if (rep == "d")
@@ -89,7 +88,7 @@ while (i >= 0)
         Console.WriteLine("");
         Console.WriteLine("La moyenne est de :" + moyenne);
         Console.WriteLine("");
-        Console.ForegroundColor = ConsoleColor.White;
+        Console.ResetColor();
     }
 
     if (rep == "e")

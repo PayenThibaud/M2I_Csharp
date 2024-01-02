@@ -24,7 +24,7 @@ while (i >= 0)
     {
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("Incorrecte ! ");
-        Console.ForegroundColor = ConsoleColor.White;
+        Console.ResetColor();
         while (rep != "Oui" && rep != "Non")
         {
             Console.Write("Un nouvel essai ? Oui / Non : ");
@@ -40,7 +40,7 @@ while (i >= 0)
     {
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("Bravo !!! C'est la bonne réponse ");
-        Console.ForegroundColor = ConsoleColor.White;
+        Console.ResetColor();
         break;
     }
 }
