@@ -48,7 +48,7 @@ double proportion(string chaine, string sequence)
 
     double percentage = (double)count / ((double)chaine.Length - (double)sequence.Length + 1) * 100;
 
-    return percentage;
+    return Math.Round(percentage,2);
 }
 
 Console.WriteLine(proportion("aaabbbtbaabebeb", "aa"));
