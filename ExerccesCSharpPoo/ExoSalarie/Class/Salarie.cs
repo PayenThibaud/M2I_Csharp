@@ -36,7 +36,7 @@ namespace ExoSalarie.Class
         public Salarie()
         {
             _nombreDeSalarie++;
-            Salaire = 10;
+            Salaire = 1555;
         }
 
         public Salarie(string matricule = "defaut", string service = "defaut", string categorie = "defaut", string nom = "defaut", double salaire = 1555) 
