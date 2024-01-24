@@ -189,10 +189,10 @@ namespace ExoADO02.Class
             Console.WriteLine(clientASupprimer.ToString());
 
 
-            Console.Write("Confirmez la suppression (Y): ");
+            Console.Write("Confirmez la suppression (y): ");
             string confirmation = Console.ReadLine();
 
-            if (confirmation.ToLower() == "Y")
+            if (confirmation.ToLower() == "y")
             {
                 clientDAO.Delete(clientId);
                 Console.WriteLine($"Client avec l'ID {clientId} supprimé avec succès.");

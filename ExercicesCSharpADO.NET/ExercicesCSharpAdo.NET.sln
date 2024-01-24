@@ -5,7 +5,11 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExoADO01", "..\ExerccesCSharpPoo\ExoADO01\ExoADO01\ExoADO01.csproj", "{815CF571-9926-4FB7-AA65-B1557C3930BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExoADO02", "ExoADO02\ExoADO02.csproj", "{A804CB9A-647F-4040-A592-262B58EEB0A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExoADO02", "ExoADO02\ExoADO02.csproj", "{A804CB9A-647F-4040-A592-262B58EEB0A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExoBanque", "ExoBanque\ExoBanque.csproj", "{F107DC60-2220-4A52-A6E6-CB32E431DBCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExoHotel", "ExoHotel\ExoHotel.csproj", "{78F98275-E5E7-4270-93D7-BE04780B8DE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{A804CB9A-647F-4040-A592-262B58EEB0A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A804CB9A-647F-4040-A592-262B58EEB0A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A804CB9A-647F-4040-A592-262B58EEB0A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F107DC60-2220-4A52-A6E6-CB32E431DBCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F107DC60-2220-4A52-A6E6-CB32E431DBCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F107DC60-2220-4A52-A6E6-CB32E431DBCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F107DC60-2220-4A52-A6E6-CB32E431DBCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78F98275-E5E7-4270-93D7-BE04780B8DE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78F98275-E5E7-4270-93D7-BE04780B8DE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78F98275-E5E7-4270-93D7-BE04780B8DE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78F98275-E5E7-4270-93D7-BE04780B8DE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
