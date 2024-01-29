@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Contacts page";
+}
+
+
+
+<p>
+    Vous êtes sur la page Contacts  <br />
+
+</p>
+
+
+
+<br />
+
+@* /Contacts/Index *@
+
+@*Html Helpers*@
+@Html.ActionLink("Vers Home/Index", "Index", "Home")
+
+@*Tag Helpers*@
+<a asp-controller="Contacts" asp-action="AfficherUnContacts" class="btn btn-primary">Vers /Contacts/AfficherUnContacts</a>
+
+<a asp-controller="Contacts" asp-action="ContactsAfficher" class="btn btn-primary">Vers /Contacts/ContactsAfficher</a>
+
+<a asp-controller="Contacts" asp-action="AjouterUnContacts" asp-route-id="Toto" class="btn btn-primary">Vers /Contacts/AjouterUnContacts/toto</a>
