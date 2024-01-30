@@ -7,23 +7,29 @@
 
 Je suis la page pour lister les Contacts...
 
+<br />
+<br />
+
 @{
     string message = (string)ViewData["message"];
+    @message;
 }
 
-@message
+<br />
+<br />
 
 @foreach (var str in Model)
 {
     <h5>@str</h5>
 }
 
+<br />
 
 @{
-    ViewBag.TestBags = ViewBag.TestBags ?? new List<string>() { "valeur par défaut car liste Chaines vide "};
-}
+    ViewBag.TestBags = ViewBag.TestBags ?? new List<string>() { "valeur par défaut car liste Chaines vide " };
 
-@foreach (var str in ViewBag.TestBags)
-{
-    <h5>@str</h5>
+    foreach (var str in ViewBag.TestBags)
+    {
+        <h2>@str</h2>
+    }
 }
