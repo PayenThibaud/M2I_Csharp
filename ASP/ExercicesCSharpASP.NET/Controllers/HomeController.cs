@@ -6,44 +6,82 @@ namespace ExercicesCSharpASP.NET.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        //private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
 
+        // /Home/Index
         public IActionResult Index()
         {
-            return View();
+            List<string> chaines = new()
+            {
+                "chaine1",
+                "chaine2",
+                "chaine3",
+                "blabla",
+            };
+
+            // passer des données à la vue
+
+            // méthode 1: ViewData
+            ViewData["chaines"] = chaines;
+
+            ViewData["message"] = "message depuis Index";
+
+            // méthode 2: ViewBag
+            ViewBag.Chaines = chaines;
+
+            // méthode 3: Model
+            return View(chaines);
+
+
+            //return View();
+            //return View("Index");
+        }
+        public IActionResult Index2()
+        {
+            ViewData["message"] = "message depuis Index 2, ce n'est pas la même action !";
+
+            return View("Index"); // => on retourne directement la vue Index.cshtml
+        }
+        public IActionResult Index3()
+        {
+            return RedirectToAction("Index"); // => repasse par l'action/la méthode Index de HomeController
+            //return RedirectToAction(nameof(Index));
         }
 
+        // /Home/Privacy
         public IActionResult Privacy()
         {
             return View();
         }
 
-        public string Test()
+        // /Home/DitBonjour
+        public string DitBonjour()
         {
-            return "Test";
+            return "Bonjour à toi !";
         }
 
-        //?personne=coucou
-        public string TestA(string personne)
+        // /Home/DitBonjourA?personne=Guillaume
+        public string DitBonjourA(string personne)
         {
-            return $"Test {personne}";
+            return $"Bonjour à toi {personne}!";
         }
 
-        public string Compte(int id)
+        // /Home/Compter?id=15
+        // /Home/Compter/15
+        public string Compter(int id)
         {
             string chaine = "";
-            for (int i = 0; i < id+1; i++)
+            for (int i = 0; i < id; i++)
             {
                 chaine += i + ", ";
             }
             return $"Compte : {chaine}!";
         }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -1,26 +1,29 @@
-﻿@{
+﻿@model List<string>
+@{
     ViewData["Title"] = "Contacts page";
 }
 
 
 
-<p>
-    Vous êtes sur la page Contacts  <br />
+Je suis la page pour lister les Contacts...
 
-</p>
+@{
+    string message = (string)ViewData["message"];
+}
+
+@message
+
+@foreach (var str in Model)
+{
+    <h5>@str</h5>
+}
 
 
+@{
+    ViewBag.TestBags = ViewBag.TestBags ?? new List<string>() { "valeur par défaut car liste Chaines vide "};
+}
 
-<br />
-
-@* /Contacts/Index *@
-
-@*Html Helpers*@
-@Html.ActionLink("Vers Home/Index", "Index", "Home")
-
-@*Tag Helpers*@
-<a asp-controller="Contacts" asp-action="AfficherUnContacts" class="btn btn-primary">Vers /Contacts/AfficherUnContacts</a>
-
-<a asp-controller="Contacts" asp-action="ContactsAfficher" class="btn btn-primary">Vers /Contacts/ContactsAfficher</a>
-
-<a asp-controller="Contacts" asp-action="AjouterUnContacts" asp-route-id="Toto" class="btn btn-primary">Vers /Contacts/AjouterUnContacts/toto</a>
+@foreach (var str in ViewBag.TestBags)
+{
+    <h5>@str</h5>
+}
