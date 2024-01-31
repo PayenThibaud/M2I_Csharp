@@ -1,42 +1,38 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace ExercicesCSharpASP.NET.Models
 {
     public class Contact
     {
-        private int _id;
-        private string _name;
-        private string _email;
-        private string _phoneNumber;
-        private string _address;
-        private string _city;
-        private string _region;
-        private string _postalCode;
-        private string _country;
+        public int Id { get; set; }
 
-        public int Id { get => _id; set => _id = value; }
-        public string Name { get => _name; set => _name = value; }
-        public string Email { get => _email; set => _email = value; }
-        public string PhoneNumber { get => _phoneNumber; set => _phoneNumber = value; }
-        public string Address { get => _address; set => _address = value; }
-        public string City { get => _city; set => _city = value; }
-        public string Region { get => _region; set => _region = value; }
-        public string PostalCode { get => _postalCode; set => _postalCode = value; }
-        public string Country { get => _country; set => _country = value; }
+        [Display(Name = "Nom")]
+        public string Name { get; set; }
 
-        public Contact(int id,string name, string email, string phoneNumber, string address, string city, string region, string postalCode, string country)
-        {
-            _id = id;
-            _name = name;
-            _email = email;
-            _phoneNumber = phoneNumber;
-            _address = address;
-            _city = city;
-            _region = region;
-            _postalCode = postalCode;
-            _country = country;
-        }
+        [Display(Name = "Adresse Mail")]
+        public string Email { get; set; }
+
+        [Display(Name = "Numéro de tel")]
+        public string PhoneNumber { get; set; }
+
+        [Display(Name = "Adresse")]
+        public string Address { get; set; }
+
+        [Display(Name = "Ville")]
+        public string City { get; set; }
+
+        [Display(Name = "Région")]
+        public string Region { get; set; }
+
+        [Display(Name = "Code postal")]
+        public string PostalCode { get; set; }
+
+        [Display(Name = "Pays")]
+        public string Country { get; set; }
+
+
     }
 }
      
