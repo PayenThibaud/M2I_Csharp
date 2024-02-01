@@ -1,9 +1,15 @@
 using Playtypuces.Data;
+using Playtypuces.Models;
+using Playtypuces.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<ApplicationDbContext>();
+
+builder.Services.AddScoped<IRepository<Playtypuce, int>, PlaytypuceRepository>();
 
 builder.Services.AddSingleton<FakeDb>();
 
