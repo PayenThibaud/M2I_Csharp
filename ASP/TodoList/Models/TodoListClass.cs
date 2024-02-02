@@ -11,5 +11,14 @@ namespace TodoList.Models
 
         [Display(Name = "Description de la tâche")]
         public string Description { get; set; }
+
+        [Display(Name = "Statut en cours")]
+        public Statut StatutEnCours { get; set; }
+    }
+
+    public enum Statut
+    {
+        Terminée,
+        EnCours
     }
 }
