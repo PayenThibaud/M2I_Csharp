@@ -22,9 +22,9 @@
                 @Html.DisplayNameForInnerType((TodoListClass model) => model.Description)
             </th>
             <th>
-                @Html.DisplayNameForInnerType((TodoListClass model) => model.StatutEnCours)
+                StatutEnCours
             </th>
-            <th></th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -41,7 +41,14 @@
                     @Html.DisplayFor(modelItem => p.Description)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => p.StatutEnCours)
+                    <form asp-action="UpdateStatus" method="post">
+                        <input type="hidden" name="id" value="@p.Id" />
+
+                        <div class="btn-group" role="group" aria-label="StatutEnCours">
+                            <button type="submit" class="btn btn-primary @(p.StatutEnCours == Statut.EnCours ? "active" : "")" name="status" value="EnCours">En Cours</button>
+                            <button type="submit" class="btn btn-primary @(p.StatutEnCours == Statut.Terminée ? "active" : "")" name="status" value="Termine">Terminé</button>
+                        </div>
+                    </form>
                 </td>
                 <td>
                     <a class="btn btn-primary" asp-action="Details" asp-route-id="@p.Id">Détails du mémo</a>

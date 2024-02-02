@@ -53,7 +53,21 @@ namespace TodoList.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult UpdateStatus(int id, string status)
+        {
+            var todoListClass = _todoListClassRepository.GetById(id);
 
+            if (todoListClass == null)
+            {
+                return NotFound();
+            }
+
+            todoListClass.StatutEnCours = status == "EnCours" ? Statut.EnCours : Statut.Terminée;
+
+            _todoListClassRepository.Update(todoListClass);
+
+            return RedirectToAction(nameof(Index));
+        }
 
     }
 }
