@@ -12,7 +12,6 @@ namespace Exo4WebAPI.Models
         public Sexe Sexe1 { get; set; }
         public DateTime? DateDeNaissance { get; set; }
         public string Avatar { get; set; }
-
         public int? Age => DateDeNaissance.HasValue ? CalculAge(DateDeNaissance.Value) : null;
         private static int CalculAge(DateTime DateDeNaissance)
         {
