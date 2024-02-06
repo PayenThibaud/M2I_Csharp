@@ -18,29 +18,50 @@ namespace Exo4WebAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllContacts()
+        public IActionResult GetAllContacts(string? chainePrenom, string? chaineNom)
         {
-            var contacts = _contactRepository.GetAll();
+            List<Contact> contacts;
+
+            if (chainePrenom == null && chaineNom == null)
+            {
+                contacts = _contactRepository.GetAll();
+            }
+            else
+            {
+                if (chaineNom != null && chainePrenom != null)
+                {
+                    contacts = _contactRepository.GetAll(c => c.Prenom.Contains(chainePrenom) && c.Nom.Contains(chaineNom)).ToList();
+                }
+                else if (chaineNom != null)
+                {
+                    contacts = _contactRepository.GetAll(c => c.Nom.Contains(chaineNom)).ToList();
+                }
+                else 
+                {
+                    contacts = _contactRepository.GetAll(c => c.Prenom.Contains(chainePrenom)).ToList();
+                }
+            }
 
             if (contacts == null || contacts.Count == 0)
-                return NotFound(new
-                {
-                    Message = "Contacts non trouvée !"
-                });
-
-            return Ok(new
             {
-                Message = "Contacts trouvée !",
-                Contact = contacts
-            });
+                return NotFound(new { Message = "Contacts non trouvés !" });
+            }
+
+            return Ok(new { Message = "Contacts trouvés !", Contacts = contacts });
         }
+
 
         [HttpPost]
         public IActionResult AddContact([FromBody] Contact contact)
         {
+            if (contact == null)
+            {
+                return BadRequest("Contact invalide");
+            }
+
             _contactRepository.Add(contact);
 
-            return CreatedAtAction(nameof(AddContact), new { id = contact.Id }, "Contact ajoutée");
+            return CreatedAtAction(nameof(AddContact), new { id = contact.Id }, "Contact ajouté");
         }
 
 

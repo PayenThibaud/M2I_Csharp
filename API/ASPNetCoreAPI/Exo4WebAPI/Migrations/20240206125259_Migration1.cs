@@ -17,7 +17,6 @@ namespace Exo4WebAPI.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nom = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Prenom = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NomComplet = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Sexe1 = table.Column<int>(type: "int", nullable: false),
                     DateDeNaissance = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Avatar = table.Column<string>(type: "nvarchar(max)", nullable: false)
@@ -29,14 +28,14 @@ namespace Exo4WebAPI.Migrations
 
             migrationBuilder.InsertData(
                 table: "Contacts",
-                columns: new[] { "Id", "Avatar", "DateDeNaissance", "Nom", "NomComplet", "Prenom", "Sexe1" },
+                columns: new[] { "Id", "Avatar", "DateDeNaissance", "Nom", "Prenom", "Sexe1" },
                 values: new object[,]
                 {
-                    { 1, "http://localhost:port/Avatars/force.png", new DateTime(1997, 10, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), "Benjamin", "Benjamin Fontaine", "Fontaine", 0 },
-                    { 2, "http://localhost:port/Avatars/avatar2.png", new DateTime(1990, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Alice", "Alice Dupont", "Dupont", 1 },
-                    { 3, "http://localhost:port/Avatars/avatar3.png", new DateTime(1985, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Louis", "Louis Lefevre", "Lefevre", 0 },
-                    { 4, "http://localhost:port/Avatars/avatar4.png", new DateTime(2000, 3, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), "Sophie", "Sophie Martin", "Martin", 1 },
-                    { 5, "http://localhost:port/Avatars/avatar5.png", new DateTime(1980, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Luc", "Luc Robert", "Robert", 0 }
+                    { 1, "http://localhost:port/Avatars/force.png", new DateTime(1997, 10, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), "Benjamin", "Fontaine", 0 },
+                    { 2, "http://localhost:port/Avatars/avatar2.png", new DateTime(1990, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Alice", "Dupont", 1 },
+                    { 3, "http://localhost:port/Avatars/avatar3.png", new DateTime(1985, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Louis", "Lefevre", 0 },
+                    { 4, "http://localhost:port/Avatars/avatar4.png", new DateTime(2000, 3, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), "Sophie", "Martin", 1 },
+                    { 5, "http://localhost:port/Avatars/avatar5.png", new DateTime(1980, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Luc", "Robert", 0 }
                 });
         }
 

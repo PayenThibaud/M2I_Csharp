@@ -41,10 +41,6 @@ namespace Exo4WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NomComplet")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Prenom")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -63,7 +59,6 @@ namespace Exo4WebAPI.Migrations
                             Avatar = "http://localhost:port/Avatars/force.png",
                             DateDeNaissance = new DateTime(1997, 10, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nom = "Benjamin",
-                            NomComplet = "Benjamin Fontaine",
                             Prenom = "Fontaine",
                             Sexe1 = 0
                         },
@@ -73,7 +68,6 @@ namespace Exo4WebAPI.Migrations
                             Avatar = "http://localhost:port/Avatars/avatar2.png",
                             DateDeNaissance = new DateTime(1990, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nom = "Alice",
-                            NomComplet = "Alice Dupont",
                             Prenom = "Dupont",
                             Sexe1 = 1
                         },
@@ -83,7 +77,6 @@ namespace Exo4WebAPI.Migrations
                             Avatar = "http://localhost:port/Avatars/avatar3.png",
                             DateDeNaissance = new DateTime(1985, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nom = "Louis",
-                            NomComplet = "Louis Lefevre",
                             Prenom = "Lefevre",
                             Sexe1 = 0
                         },
@@ -93,7 +86,6 @@ namespace Exo4WebAPI.Migrations
                             Avatar = "http://localhost:port/Avatars/avatar4.png",
                             DateDeNaissance = new DateTime(2000, 3, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nom = "Sophie",
-                            NomComplet = "Sophie Martin",
                             Prenom = "Martin",
                             Sexe1 = 1
                         },
@@ -103,7 +95,6 @@ namespace Exo4WebAPI.Migrations
                             Avatar = "http://localhost:port/Avatars/avatar5.png",
                             DateDeNaissance = new DateTime(1980, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Nom = "Luc",
-                            NomComplet = "Luc Robert",
                             Prenom = "Robert",
                             Sexe1 = 0
                         });

@@ -32,7 +32,7 @@ namespace Exo4WebAPI.Repositories
 
         public Contact? GetByNom(string nom)
         {
-            return _dbContext.Contacts.Find(nom);
+           return _dbContext.Contacts.FirstOrDefault(c => c.Nom == nom);
         }
 
         public List<Contact> GetAll()
@@ -56,17 +56,17 @@ namespace Exo4WebAPI.Repositories
                 contactFromDb.Nom = contact.Nom;
             if (contactFromDb.Prenom != contact.Prenom)
                 contactFromDb.Prenom = contact.Prenom;
-            if (contactFromDb.NomComplet != contact.NomComplet)
-                contactFromDb.NomComplet = contact.NomComplet;
             if (contactFromDb.Sexe1 != contact.Sexe1)
                 contactFromDb.Sexe1 = contact.Sexe1;
-            if(contactFromDb.DateDeNaissance != contact.DateDeNaissance)
+            if (contactFromDb.DateDeNaissance != contact.DateDeNaissance)
                 contactFromDb.DateDeNaissance = contact.DateDeNaissance;
-            if(contactFromDb.Avatar != contact.Avatar)
+            if (contactFromDb.Avatar != contact.Avatar)
                 contactFromDb.Avatar = contact.Avatar;
 
             return _dbContext.SaveChanges() > 0;
         }
+
+
 
         // DELETE
         public bool Delete(int id)

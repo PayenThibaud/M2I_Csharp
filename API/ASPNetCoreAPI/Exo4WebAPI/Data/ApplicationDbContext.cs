@@ -1,5 +1,7 @@
 ﻿using Exo4WebAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 
 namespace Exo4WebAPI.Data
 {
@@ -23,7 +25,6 @@ namespace Exo4WebAPI.Data
                     Id = ++lastIndex,
                     Nom = "Benjamin",
                     Prenom = "Fontaine",
-                    NomComplet = "Benjamin Fontaine",
                     DateDeNaissance = new DateTime(1997, 10, 19),
                     Sexe1 = Sexe.Mâle,
                     Avatar = "http://localhost:port/Avatars/force.png"
@@ -33,7 +34,6 @@ namespace Exo4WebAPI.Data
                     Id = ++lastIndex,
                     Nom = "Alice",
                     Prenom = "Dupont",
-                    NomComplet = "Alice Dupont",
                     DateDeNaissance = new DateTime(1990, 12, 05),
                     Sexe1 = Sexe.Femelle,
                     Avatar = "http://localhost:port/Avatars/avatar2.png"
@@ -43,7 +43,6 @@ namespace Exo4WebAPI.Data
                     Id = ++lastIndex,
                     Nom = "Louis",
                     Prenom = "Lefevre",
-                    NomComplet = "Louis Lefevre",
                     DateDeNaissance = new DateTime(1985, 06, 15),
                     Sexe1 = Sexe.Mâle,
                     Avatar = "http://localhost:port/Avatars/avatar3.png"
@@ -53,7 +52,6 @@ namespace Exo4WebAPI.Data
                     Id = ++lastIndex,
                     Nom = "Sophie",
                     Prenom = "Martin",
-                    NomComplet = "Sophie Martin",
                     DateDeNaissance = new DateTime(2000, 03, 23),
                     Sexe1 = Sexe.Femelle,
                     Avatar = "http://localhost:port/Avatars/avatar4.png"
@@ -63,7 +61,6 @@ namespace Exo4WebAPI.Data
                     Id = ++lastIndex,
                     Nom = "Luc",
                     Prenom = "Robert",
-                    NomComplet = "Luc Robert",
                     DateDeNaissance = new DateTime(1980, 08, 10),
                     Sexe1 = Sexe.Mâle,
                     Avatar = "http://localhost:port/Avatars/avatar5.png"
@@ -74,4 +71,3 @@ namespace Exo4WebAPI.Data
         }
     }
 }
-
