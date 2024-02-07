@@ -23,51 +23,26 @@ namespace Exo4WebAPI.Data
                 new Contact()
                 {
                     Id = ++lastIndex,
-                    Nom = "Benjamin",
-                    Prenom = "Fontaine",
+                    Nom = "Fontaine",
+                    Prenom = "Benjamin",
                     DateDeNaissance = new DateTime(1997, 10, 19),
-                    Sexe1 = Sexe.Mâle,
+                    Sexe1 = "M", // Remplacez par la chaîne correspondante à votre nouveau modèle (par exemple, "M" pour masculin)
                     Avatar = "http://localhost:port/Avatars/force.png"
                 },
                 new Contact()
                 {
                     Id = ++lastIndex,
-                    Nom = "Alice",
-                    Prenom = "Dupont",
+                    Nom = "Dupont",
+                    Prenom = "Alice",
                     DateDeNaissance = new DateTime(1990, 12, 05),
-                    Sexe1 = Sexe.Femelle,
+                    Sexe1 = "F", // Remplacez par la chaîne correspondante à votre nouveau modèle (par exemple, "F" pour féminin)
                     Avatar = "http://localhost:port/Avatars/avatar2.png"
                 },
-                new Contact()
-                {
-                    Id = ++lastIndex,
-                    Nom = "Louis",
-                    Prenom = "Lefevre",
-                    DateDeNaissance = new DateTime(1985, 06, 15),
-                    Sexe1 = Sexe.Mâle,
-                    Avatar = "http://localhost:port/Avatars/avatar3.png"
-                },
-                new Contact()
-                {
-                    Id = ++lastIndex,
-                    Nom = "Sophie",
-                    Prenom = "Martin",
-                    DateDeNaissance = new DateTime(2000, 03, 23),
-                    Sexe1 = Sexe.Femelle,
-                    Avatar = "http://localhost:port/Avatars/avatar4.png"
-                },
-                new Contact()
-                {
-                    Id = ++lastIndex,
-                    Nom = "Luc",
-                    Prenom = "Robert",
-                    DateDeNaissance = new DateTime(1980, 08, 10),
-                    Sexe1 = Sexe.Mâle,
-                    Avatar = "http://localhost:port/Avatars/avatar5.png"
-                },
+                // Ajoutez d'autres contacts selon votre nouveau modèle
             };
 
             modelBuilder.Entity<Contact>().HasData(contacts);
         }
     }
 }
+

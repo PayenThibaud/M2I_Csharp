@@ -13,26 +13,25 @@ namespace Exo4WebAPI.Repositories
         }
 
         // CREATE
-        public bool Add(Contact contact)
+        public Contact? Add(Contact contact)
         {
-            var addedObj = _dbContext.Contacts.Add(contact);
+            var addEntry = _dbContext.Contacts.Add(contact); // retourne un EntityEntry<Contact> qui enveloppe le nouveau contact créé
             _dbContext.SaveChanges();
-            return addedObj.Entity.Id > 0;
+
+            if (addEntry.Entity.Id > 0) // si l'entité est bien ajoutée l'id est > 0
+                return addEntry.Entity;
+
+            return null; // erreur lors de l'ajout
         }
 
         // READ
         public Contact? GetById(int id)
         {
-            return _dbContext.Contacts.Find(id);
+            return _dbContext.Contacts.FirstOrDefault(c => c.Id == id);
         }
         public Contact? Get(Expression<Func<Contact, bool>> predicate)
         {
             return _dbContext.Contacts.FirstOrDefault(predicate);
-        }
-
-        public Contact? GetByNom(string nom)
-        {
-           return _dbContext.Contacts.FirstOrDefault(c => c.Nom == nom);
         }
 
         public IEnumerable<Contact> GetAll()
@@ -45,12 +44,12 @@ namespace Exo4WebAPI.Repositories
         }
 
         // UPDATE
-        public bool Update(Contact contact)
+        public Contact? Update(Contact contact)
         {
             var contactFromDb = GetById(contact.Id);
 
             if (contactFromDb == null)
-                return false;
+                return null;
 
             if (contactFromDb.Nom != contact.Nom)
                 contactFromDb.Nom = contact.Nom;
@@ -63,7 +62,10 @@ namespace Exo4WebAPI.Repositories
             if (contactFromDb.Avatar != contact.Avatar)
                 contactFromDb.Avatar = contact.Avatar;
 
-            return _dbContext.SaveChanges() > 0;
+            if (_dbContext.SaveChanges() == 0)
+                return null;
+
+            return contactFromDb;
         }
 
 

@@ -18,29 +18,37 @@ namespace Exo4WebAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllContacts(string? chainePrenom)
+        //public ActionResult<List<Contact>> GetAll()
+        public IActionResult GetAll(string? startLastName) // ne pas oublier le "?" pour rendre le request param faculattif
+        //public IActionResult GetAll([FromQuery] string? startLastName)
         {
+            if (startLastName == null)
+                return Ok(_contactRepository.GetAll());
+
             return Ok(
-                _contactRepository.GetAll(c => c.Prenom!.StartsWith(chainePrenom))
+                //_repository.GetAll(c => c.LastName!.ToLower().StartsWith(startLastName.ToLower()))
+                _contactRepository.GetAll(c => c.Nom!.StartsWith(startLastName.ToUpper()))
                 );
         }
 
 
         [HttpPost]
-        public IActionResult AddContact([FromBody] Contact contact)
+        public IActionResult Post([FromBody] Contact contact)
         {
-            var contactAdded = _contactRepository.Add(contact); 
+            var contactAdded = _contactRepository.Add(contact);
 
             if (contactAdded != null)
-            {
+                //return Ok("Contact Added !");
+                //return Created($"/contacts/{createdAtId}", "Contact Added !");
                 return CreatedAtAction(nameof(GetContactById),
-                    new { id = contactAdded.Id },
-                    "Contact ajouté",
-            }
+                                       new { id = contactAdded.Id },
+                                       new
+                                       {
+                                           Message = "Contact Added.",
+                                           Contact = contactAdded
+                                       });
 
-            _contactRepository.Add(contact);
-
-            return CreatedAtAction(nameof(AddContact), new { id = contact.Id }, "Contact ajouté");
+            return BadRequest("Something went wrong...");
         }
 
 
@@ -67,52 +75,55 @@ namespace Exo4WebAPI.Controllers
         {
             var contact = _contactRepository.GetById(id);
 
+
             if (contact == null)
                 return NotFound(new
                 {
-                    Message = "Contact non trouvée !"
+                    Message = "There is no Contact with this Id."
                 });
+            //return NotFound("There is no Contact with this Id.");
+            //return NotFound();
 
             return Ok(new
             {
-                Message = "Contact trouvée !",
+                Message = "Contact found.",
                 Contact = contact
             });
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateContact(int id, [FromBody] Contact update)
+        public IActionResult Put([FromRoute] int id, [FromBody] Contact contact)
+        //public IActionResult Put([FromBody] Contact contact) // ici l'id serait dans le contact
         {
-            var contact = _contactRepository.Update(update);
+            var contactFromDb = _contactRepository.GetById(id);
 
-            if (contact == null)
-            {
-                return NotFound(new
+            if (contactFromDb == null)
+                return NotFound("There is no Contact with this Id.");
+
+            contact.Id = id; // nécessaire dans le cas où l'id n'est pas ou mal définit dan la requete
+
+            var contactUpdated = _contactRepository.Update(contact);
+
+            if (contactUpdated != null)
+                return Ok(new
                 {
-                    Message = $"Le contact avec l'ID '{id}' n'a pas été trouvé."
+                    Message = "Contact Updated.",
+                    Contact = contactUpdated
                 });
-            }
 
-            return Ok(new
-            {
-                Message = "Contacts mis à jour !",
-                Contact = contact
-            });
+            return BadRequest("Something went wrong...");
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteContact(int id)
         {
-            var contact = _contactRepository.Delete(id);
-
-            if (contact == null)
             {
-                return NotFound(new
-                {
-                    Message = $"Le contact avec l'ID '{id}' n'a pas été trouvé."
-                });
+                if (_contactRepository.Delete(id))
+                    return Ok("Contect Deleted");
+
+                //return NotFound("Contact Not Found");
+                return BadRequest("Something went wrong...");
             }
-            return NoContent();
         }
     }
 }

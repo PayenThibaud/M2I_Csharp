@@ -26,7 +26,8 @@ namespace Exo4WebAPI.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("id");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -35,18 +36,25 @@ namespace Exo4WebAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("DateDeNaissance")
-                        .HasColumnType("datetime2");
+                        .IsRequired()
+                        .HasColumnType("datetime2")
+                        .HasColumnName("birth_date");
 
                     b.Property<string>("Nom")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("lastname");
 
                     b.Property<string>("Prenom")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("firstname");
 
-                    b.Property<int>("Sexe1")
-                        .HasColumnType("int");
+                    b.Property<string>("Sexe1")
+                        .IsRequired()
+                        .HasMaxLength(1)
+                        .HasColumnType("nvarchar(1)")
+                        .HasColumnName("gender");
 
                     b.HasKey("Id");
 
@@ -58,45 +66,18 @@ namespace Exo4WebAPI.Migrations
                             Id = 1,
                             Avatar = "http://localhost:port/Avatars/force.png",
                             DateDeNaissance = new DateTime(1997, 10, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nom = "Benjamin",
-                            Prenom = "Fontaine",
-                            Sexe1 = 0
+                            Nom = "Fontaine",
+                            Prenom = "Benjamin",
+                            Sexe1 = "M"
                         },
                         new
                         {
                             Id = 2,
                             Avatar = "http://localhost:port/Avatars/avatar2.png",
                             DateDeNaissance = new DateTime(1990, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nom = "Alice",
-                            Prenom = "Dupont",
-                            Sexe1 = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Avatar = "http://localhost:port/Avatars/avatar3.png",
-                            DateDeNaissance = new DateTime(1985, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nom = "Louis",
-                            Prenom = "Lefevre",
-                            Sexe1 = 0
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Avatar = "http://localhost:port/Avatars/avatar4.png",
-                            DateDeNaissance = new DateTime(2000, 3, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nom = "Sophie",
-                            Prenom = "Martin",
-                            Sexe1 = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Avatar = "http://localhost:port/Avatars/avatar5.png",
-                            DateDeNaissance = new DateTime(1980, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nom = "Luc",
-                            Prenom = "Robert",
-                            Sexe1 = 0
+                            Nom = "Dupont",
+                            Prenom = "Alice",
+                            Sexe1 = "F"
                         });
                 });
 #pragma warning restore 612, 618
