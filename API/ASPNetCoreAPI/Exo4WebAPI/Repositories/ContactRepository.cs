@@ -35,13 +35,13 @@ namespace Exo4WebAPI.Repositories
            return _dbContext.Contacts.FirstOrDefault(c => c.Nom == nom);
         }
 
-        public List<Contact> GetAll()
+        public IEnumerable<Contact> GetAll()
         {
-            return _dbContext.Contacts.ToList();
+            return _dbContext.Contacts;
         }
-        public List<Contact> GetAll(Expression<Func<Contact, bool>> predicate)
+        public IEnumerable<Contact> GetAll(Expression<Func<Contact, bool>> predicate)
         {
-            return _dbContext.Contacts.Where(predicate).ToList();
+            return _dbContext.Contacts.Where(predicate);
         }
 
         // UPDATE

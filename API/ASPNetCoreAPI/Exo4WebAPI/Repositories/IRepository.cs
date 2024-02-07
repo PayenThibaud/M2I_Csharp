@@ -6,11 +6,10 @@ namespace Exo4WebAPI.Repositories
     {
         bool Add(TEntity animal);
         TEntity? Get(Expression<Func<TEntity, bool>> predicate);
-        List<TEntity> GetAll();
-        List<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate);
+        IEnumerable<TEntity> GetAll();
+        IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate);
         TEntity? GetById(int id);
-        TEntity? GetByNom(string nom);
-        bool Update(TEntity animal);
+        TEntity? Update(TEntity animal);
         bool Delete(int id);
     }
 }

@@ -18,45 +18,24 @@ namespace Exo4WebAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllContacts(string? chainePrenom, string? chaineNom)
+        public IActionResult GetAllContacts(string? chainePrenom)
         {
-            List<Contact> contacts;
-
-            if (chainePrenom == null && chaineNom == null)
-            {
-                contacts = _contactRepository.GetAll();
-            }
-            else
-            {
-                if (chaineNom != null && chainePrenom != null)
-                {
-                    contacts = _contactRepository.GetAll(c => c.Prenom.Contains(chainePrenom) && c.Nom.Contains(chaineNom)).ToList();
-                }
-                else if (chaineNom != null)
-                {
-                    contacts = _contactRepository.GetAll(c => c.Nom.Contains(chaineNom)).ToList();
-                }
-                else 
-                {
-                    contacts = _contactRepository.GetAll(c => c.Prenom.Contains(chainePrenom)).ToList();
-                }
-            }
-
-            if (contacts == null || contacts.Count == 0)
-            {
-                return NotFound(new { Message = "Contacts non trouvés !" });
-            }
-
-            return Ok(new { Message = "Contacts trouvés !", Contacts = contacts });
+            return Ok(
+                _contactRepository.GetAll(c => c.Prenom!.StartsWith(chainePrenom))
+                );
         }
 
 
         [HttpPost]
         public IActionResult AddContact([FromBody] Contact contact)
         {
-            if (contact == null)
+            var contactAdded = _contactRepository.Add(contact); 
+
+            if (contactAdded != null)
             {
-                return BadRequest("Contact invalide");
+                return CreatedAtAction(nameof(GetContactById),
+                    new { id = contactAdded.Id },
+                    "Contact ajouté",
             }
 
             _contactRepository.Add(contact);
@@ -65,10 +44,10 @@ namespace Exo4WebAPI.Controllers
         }
 
 
-        [HttpGet("name/{nom}")]
-        public IActionResult GetContactByNom(string nom)
+        [HttpGet("name/{prenom}")]
+        public IActionResult GetContactByPrenom(string prenom)
         {
-            var contact = _contactRepository.GetByNom(nom);
+            var contact = _contactRepository.Get(c => c.Prenom == prenom);
 
             if (contact == null)
                 return NotFound(new

@@ -10,7 +10,6 @@ namespace Exo4WebAPI.Repositories
         List<Contact> GetAll();
         List<Contact> GetAll(Expression<Func<Contact, bool>> predicate);
         Contact? GetById(int id);
-        Contact? GetByNom(string nom);
         bool Update(Contact animal);
         bool Delete(int id);
     }
