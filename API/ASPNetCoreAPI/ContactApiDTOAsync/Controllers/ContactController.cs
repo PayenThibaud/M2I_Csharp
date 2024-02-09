@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Threading.Channels;
-using ExercicesCSharpASP.NET.Models;
-using ExercicesCSharpASP.NET.Data;
-using ExercicesCSharpASP.NET.Repositories;
+﻿using AutoMapper;
+using ContactApiDTO.DTOs;
+using ContactApiDTO.Models;
+using ContactApiDTO.Repositories;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
-namespace ExercicesCSharpASP.NET.Controllers
+namespace ContactApiDTO.Controllers
 {
     //[Route("api/[controller]")]
     [Route("contacts")]

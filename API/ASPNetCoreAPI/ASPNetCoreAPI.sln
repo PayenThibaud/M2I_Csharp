@@ -5,7 +5,11 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo01", "Demo01\Demo01.csproj", "{25D54422-326C-4E75-A8DA-EE18EACA4059}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exo4WebAPI", "Exo4WebAPI\Exo4WebAPI.csproj", "{5F1F729C-7824-4D03-81EA-F2CD37C442EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exo4WebAPI", "Exo4WebAPI\Exo4WebAPI.csproj", "{5F1F729C-7824-4D03-81EA-F2CD37C442EE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactApiDTOAsync", "ContactApiDTOAsync\ContactApiDTOAsync.csproj", "{4084D1DF-F920-4A22-9C4E-A5B4291A09B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzeriaApi", "PizzeriaApi\PizzeriaApi.csproj", "{3EFCC47B-D897-40F2-9AAA-A84830C0E650}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{5F1F729C-7824-4D03-81EA-F2CD37C442EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F1F729C-7824-4D03-81EA-F2CD37C442EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F1F729C-7824-4D03-81EA-F2CD37C442EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4084D1DF-F920-4A22-9C4E-A5B4291A09B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4084D1DF-F920-4A22-9C4E-A5B4291A09B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4084D1DF-F920-4A22-9C4E-A5B4291A09B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4084D1DF-F920-4A22-9C4E-A5B4291A09B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EFCC47B-D897-40F2-9AAA-A84830C0E650}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EFCC47B-D897-40F2-9AAA-A84830C0E650}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EFCC47B-D897-40F2-9AAA-A84830C0E650}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EFCC47B-D897-40F2-9AAA-A84830C0E650}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

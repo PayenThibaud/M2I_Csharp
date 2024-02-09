@@ -1,24 +1,12 @@
-using ExercicesCSharpASP.NET.Data;
-using ExercicesCSharpASP.NET.Models;
-using ExercicesCSharpASP.NET.Repositories;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
+
+using PizzeriaApi.Extension;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
 
-var conn = builder.Configuration.GetConnectionString("Default");
-builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(conn));
+builder.InjectDependancies();
 
-builder.Services.AddScoped<IRepository<Contact>, ContactRepository>();
-
-// ajouter le service IMapper de AutoMapper
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 //builder.Services.AddCors(options =>
 //{
@@ -53,8 +41,8 @@ app.UseCors(options =>
     options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
 });
 
+app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();

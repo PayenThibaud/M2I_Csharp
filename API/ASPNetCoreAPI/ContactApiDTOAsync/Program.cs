@@ -1,7 +1,6 @@
-using ExercicesCSharpASP.NET.Data;
-using ExercicesCSharpASP.NET.Models;
-using ExercicesCSharpASP.NET.Repositories;
-using Microsoft.AspNetCore.Builder;
+using ContactApiDTO.Data;
+using ContactApiDTO.Models;
+using ContactApiDTO.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var conn = builder.Configuration.GetConnectionString("Default");
 builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(conn));
