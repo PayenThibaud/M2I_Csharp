@@ -1,0 +1,24 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+@for (int i = 1; i <= 5; i++)
+{
+    <h2>@i</h2>
+    <Counter CurrentCount="i" />
+}
+
+
+<h4>@MaChaineCascading</h4>
+
+@code {
+    // [CascadingParameter]
+    [CascadingParameter(Name = "MaChaineCascading")]
+    public string? MaChaineCascading { get; set; }
+}

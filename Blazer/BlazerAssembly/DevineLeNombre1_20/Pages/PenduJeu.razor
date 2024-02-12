@@ -1,0 +1,126 @@
+﻿@page "/pendu"
+
+<h3>Jeu du Pendu</h3>
+
+@if (!partieTerminee)
+{
+    <div>
+        <p>Lettres testées: @string.Join(", ", pendu.LettresTestees)</p>
+        <p>Tentatives: (@pendu.NbTentatives/@pendu.NbVies)</p>
+        <p>Mot à trouver: @pendu.Masque</p>
+        <p>Veuillez entrer une lettre: <input type="text" @bind="lettre" /></p>
+        <button @onclick="VerifierLettre">Valider</button>
+    </div>
+}
+else
+{
+    @if (pendu.TestWin() == 1)
+    {
+        <p>Bravo, vous avez trouvé le mot !</p>
+    }
+    else
+    {
+        <p>Dommage, le mot à trouver était @pendu.MotATrouver</p>
+    }
+}
+
+@code {
+    Pendu pendu;
+    string lettre = "";
+    bool partieTerminee = false;
+
+    protected override void OnInitialized()
+    {
+        pendu = new Pendu();
+    }
+
+    void VerifierLettre()
+    {
+        if (lettre.Length > 0)
+        {
+            pendu.TestChar(lettre[0]);
+            if (pendu.TestWin() != 0)
+            {
+                partieTerminee = true;
+            }
+        }
+    }
+
+    internal class Pendu
+    {
+        private readonly string _motATrouver;
+        private string _masque;
+        private readonly int _nbVies;
+        private int _nbTentatives;
+        private readonly List<string> _lettresTestees;
+
+        public string MotATrouver { get => _motATrouver; }
+        public string Masque { get => _masque; }
+        public int NbVies { get => _nbVies; }
+        public int NbTentatives { get => _nbTentatives; }
+        public List<string> LettresTestees { get => _lettresTestees; }
+
+        public Pendu()
+        {
+            _motATrouver = Generer();
+            _masque = GenererMasque();
+            _lettresTestees = new();
+            _nbVies = 10;
+            _nbTentatives = 0;
+        }
+
+        private string GenererMasque()
+        {
+            string tmp = "";
+            foreach (char letter in _motATrouver)
+            {
+                tmp += "*";
+            }
+            return tmp;
+        }
+
+        private string Generer()
+        {
+            var listeMots = new List<string>
+            {
+                "amazon", "microsoft", "sephora", "activision", "nutella",
+                "arbre", "banane", "chien", "chat", "television"
+            };
+            var nombreAlea = new Random().Next(listeMots.Count);
+            return listeMots[nombreAlea].ToUpper();
+        }
+
+        public int TestWin()
+        {
+            if (!_masque.Contains("*")) return 1;
+            if (_nbTentatives >= _nbVies) return -1;
+            return 0;
+        }
+
+        public void TestChar(char lettre)
+        {
+            string aTester = lettre.ToString().ToUpper();
+            if (!_lettresTestees.Contains(aTester))
+            {
+                string tmpMask = "";
+                bool flag = false;
+                for (int i = 0; i < _motATrouver.Length; i++)
+                {
+                    if (_motATrouver[i].ToString() == aTester)
+                    {
+                        tmpMask += aTester;
+                        flag = true;
+                    }
+                    else
+                    {
+                        tmpMask += _masque[i];
+                    }
+                }
+                if (!flag) _nbTentatives++;
+                _lettresTestees.Add(aTester);
+                _masque = tmpMask;
+            }
+        }
+    }
+}
+

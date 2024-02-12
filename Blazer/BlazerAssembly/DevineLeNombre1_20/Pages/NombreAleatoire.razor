@@ -1,0 +1,83 @@
+﻿@page "/jeu"
+
+<h3>🚀 Devine le nombre aléatoire ! 🚀</h3>
+
+@if (partieTerminee && essaisRestants == 0 && partieGagner != true)
+{
+    <p>Dommage, tu as perdu 😢</p>
+    <p>Le nombre aléatoire généré était : @nombreAleatoire</p>
+    <button @onclick="GenererNombreAleatoire">Recommencez ?</button>
+}
+
+@if (partieTerminee && partieGagner)
+{
+    <p>Bravo, tu as gagné 😊</p>
+    <button @onclick="GenererNombreAleatoire">Recommencez ?</button>
+}
+
+@if (retry)
+{
+    <button @onclick="GenererNombreAleatoire">Démarrer une nouvelle partie</button>
+}
+
+@if (nombreAleatoire != 0 && !partieTerminee)
+{
+    <input type="number" @bind="nombrePropose" />
+    <button @onclick="VerifierNombrePropose">Vérifier</button>
+    <p>
+        @for (int i = 0; i < essaisRestants; i++)
+        {
+            <span>❤️</span>
+        }
+    </p>
+    <p>@indication</p>
+}
+
+
+@code {
+    Random random = new Random();
+    bool retry = true;
+    int nombreAleatoire;
+    int nombrePropose;
+    int essaisRestants = 5;
+    string indication = "";
+    bool partieTerminee = false;
+    bool partieGagner = false;
+
+    void GenererNombreAleatoire()
+    {
+        nombreAleatoire = random.Next(1, 21);
+        indication = "";
+        essaisRestants = 5;
+        partieTerminee = false;
+        partieGagner = false;
+        retry = false;
+    }
+
+    void VerifierNombrePropose()
+    {
+        essaisRestants--;
+        if (nombrePropose > nombreAleatoire)
+        {
+            indication = "Trop haut";
+        }
+        else if (nombrePropose < nombreAleatoire)
+        {
+            indication = "Trop bas";
+        }
+        else
+        {
+            indication = "Bravo";
+            partieTerminee = true;
+            partieGagner = true;
+        }
+
+        if (essaisRestants == 0 && !partieTerminee)
+        {
+            indication = "Perdu";
+            partieTerminee = true;
+        }
+    }
+}
+
+

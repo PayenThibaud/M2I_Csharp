@@ -1,0 +1,32 @@
+﻿@page "/rpg"
+
+<h3>RPG</h3>
+
+<div>
+    <p>Points de vie du joueur : @Pdv</p>
+    <p>Points d'armure du joueur : @Armure</p>
+    <p>Points de dégât du joueur : @((Arme + 10) + "-" + (Arme + 20))</p>
+    <p>Points de vie du monstre : @PdvMonstre</p>
+</div>
+
+@if (JoueurMort)
+{
+    <button @onclick="Recommencer">Recommencer</button>
+}
+
+
+@if (!JoueurMort)
+{
+    <button @onclick="() => AttaquerMonstre(3)">Attaquer le monstre</button>
+}
+
+
+@if (LevelUp > 0)
+{
+    <div>
+        <p>Félicitations, vous avez monté d'un niveau ! Choisissez votre récompense :</p>
+        <button @onclick="() => LevelUpMethod(1)">Gagner de l'armure</button>
+        <button @onclick="() => LevelUpMethod(2)">Soin</button>
+        <button @onclick="() => LevelUpMethod(3)">Augmenter la puissance de votre arme</button>
+    </div>
+}

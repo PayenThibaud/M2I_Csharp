@@ -1,0 +1,20 @@
+﻿@page "/calculatrice"
+
+<h3>Calculatrice</h3>
+
+<div>
+    <label for="value1">Value 1:</label>
+    <input id="value1" type="number" @bind="Value1" />
+</div>
+
+<div>
+    <label for="value2">Value 2:</label>
+    <input id="value2" type="number" @bind="Value2" />
+</div>
+
+<button @onclick="() => { SelectedOperation = Operation.Addition; EffectuerCalcul(); }" class="@($"{(SelectedOperation == Operation.Addition ? "btn btn-primary active" : "btn btn-primary")}")">Addition</button>
+<button @onclick="() => { SelectedOperation = Operation.Subtraction; EffectuerCalcul(); }" class="@($"{(SelectedOperation == Operation.Subtraction ? "btn btn-primary active" : "btn btn-primary")}")">Soustraction</button>
+<button @onclick="() => { SelectedOperation = Operation.Multiplication; EffectuerCalcul(); }" class="@($"{(SelectedOperation == Operation.Multiplication ? "btn btn-primary active" : "btn btn-primary")}")">Multiplication</button>
+<button @onclick="() => { SelectedOperation = Operation.Division; EffectuerCalcul(); }" class="@($"{(SelectedOperation == Operation.Division ? "btn btn-primary active" : "btn btn-primary")}")">Division</button>
+
+<p role="status">Résultat: @Resultat</p>
