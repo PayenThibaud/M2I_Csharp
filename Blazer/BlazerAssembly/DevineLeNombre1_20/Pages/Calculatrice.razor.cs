@@ -40,6 +40,10 @@ namespace DevineLeNombre1_20.Pages
                     {
                         Resultat = Value1 / Value2;
                     }
+                    else
+                    {
+                        Resultat = 0;
+                    }
                     break;
             }
         }

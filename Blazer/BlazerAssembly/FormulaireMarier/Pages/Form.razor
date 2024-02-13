@@ -1,0 +1,121 @@
+﻿@page "/form"
+@using FormulaireMarier.Models
+
+<h3>Formulaire pour Mariée</h3>
+
+<EditForm Model="FormulaireMariee" OnValidSubmit="HandleSubmit">
+    <DataAnnotationsValidator /> @* fait fonctionner la validation *@
+    <div class="col-md-10">
+        <div class=" row">
+            <div class="col">
+                <div class="mb-3">
+
+                    <label for="name" class="form-label">Nom de la Mariée</label>
+                    <InputText class="form-control" id="name" @bind-Value="FormulaireMariee.Nom" />
+                    <small>
+                        <ValidationMessage For="() => FormulaireMariee.Nom" />
+                    </small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <InputText class="form-control" id="email" @bind-Value="FormulaireMariee.Email" />
+                    <small>
+                        <ValidationMessage For="() => FormulaireMariee.Email" />
+                    </small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="adresse" class="form-label">Adresse</label>
+                    <InputText class="form-control" id="adresse" @bind-Value="FormulaireMariee.Adresse" />
+                    <small>
+                        <ValidationMessage For="() => FormulaireMariee.Adresse" />
+                    </small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="postal" class="form-label">Code Postal</label>
+                    <InputText class="form-control" id="postal" @bind-Value="FormulaireMariee.Postal" />
+                    <small>
+                        <ValidationMessage For="() => FormulaireMariee.Postal" />
+                    </small>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Soumettre</button>
+            </div>
+            <div class="col">
+
+                <div class="mb-3">
+                    <label for="age" class="form-label">Age</label>
+                    <InputNumber class="form-control" id="age" @bind-Value="FormulaireMariee.Age" />
+                    <small>
+                        <ValidationMessage For="() => FormulaireMariee.Age" />
+                    </small>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="fur" class="form-label">Couleur favorite</label>
+                    <InputSelect class="form-select" id="fur" @bind-Value="FormulaireMariee.FurColor">
+                        @foreach (FurColor furColor in Enum.GetValues(typeof(FurColor)))
+                        {
+                            <option value="@furColor">@furColor</option>
+                        }
+                    </InputSelect>
+                    <small>
+                        <ValidationMessage For="() => FormulaireMariee.FurColor" />
+                    </small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="birthday" class="form-label">Date de Naissance</label>
+                    <InputDate class="form-control" id="birthday" @bind-Value="FormulaireMariee.Naissance" />
+                    <small>
+                        <ValidationMessage For="() => FormulaireMariee.Naissance" />
+                    </small>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <InputCheckbox class="form-check-input" id="mariee" @bind-Value="FormulaireMariee.Mariee" />
+                    <label for="mariee" class="form-check-label">Mariée</label>
+                    <small>
+                        <ValidationMessage For="() => FormulaireMariee.Mariee" />
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="col">
+
+                <div class="mt-3 border p-3 rounded">
+                    <h4>Récapitulatif des informations :</h4>
+                    <p><strong>Nom de la Mariée :</strong> @FormulaireMariee.Nom</p>
+                    <p><strong>Email :</strong> @FormulaireMariee.Email</p>
+                    <p><strong>Adresse :</strong> @FormulaireMariee.Adresse</p>
+                    <p><strong>Code Postal :</strong> @FormulaireMariee.Postal</p>
+                    <p><strong>Date de Naissance :</strong> @FormulaireMariee.Naissance.ToShortDateString()</p>
+                    <p><strong>Age :</strong> @FormulaireMariee.Age</p>
+                    <p><strong>Mariée :</strong> @FormulaireMariee.Mariee</p>
+                    <p><strong>Couleur favorite :</strong> @FormulaireMariee.FurColor</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div>
+        <ValidationSummary />
+    </div>
+</EditForm>
+
+@code {
+    public FormulaireMariee FormulaireMariee { get; set; } = new FormulaireMariee();
+
+    public void HandleSubmit()
+    {
+        Console.WriteLine(FormulaireMariee); // dans un cas réel on l'enverra à une API/BDD
+    }
+}

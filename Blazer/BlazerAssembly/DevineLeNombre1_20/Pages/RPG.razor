@@ -1,12 +1,12 @@
 ﻿@page "/rpg"
 
-<h3>RPG</h3>
+<h3>🥊 Combat 🥊</h3>
 
 <div>
-    <p>Points de vie du joueur : @Pdv</p>
-    <p>Points d'armure du joueur : @Armure</p>
-    <p>Points de dégât du joueur : @((Arme + 10) + "-" + (Arme + 20))</p>
-    <p>Points de vie du monstre : @PdvMonstre</p>
+    <p>🤠 : @Pdv</p>
+    <p>🔘: @Armure</p>
+    <p>🔪: @((Arme + 10) + "-" + (Arme + 20))</p>
+    <p>👻 : @PdvMonstre</p>
 </div>
 
 @if (JoueurMort)
@@ -17,7 +17,7 @@
 
 @if (!JoueurMort)
 {
-    <button @onclick="() => AttaquerMonstre(3)">Attaquer le monstre</button>
+    <button @onclick="() => AttaquerMonstre(3)">🔪👻 ?</button>
 }
 
 
@@ -25,8 +25,8 @@
 {
     <div>
         <p>Félicitations, vous avez monté d'un niveau ! Choisissez votre récompense :</p>
-        <button @onclick="() => LevelUpMethod(1)">Gagner de l'armure</button>
-        <button @onclick="() => LevelUpMethod(2)">Soin</button>
-        <button @onclick="() => LevelUpMethod(3)">Augmenter la puissance de votre arme</button>
+        <button @onclick="() => LevelUpMethod(1)">🔘 ++</button>
+        <button @onclick="() => LevelUpMethod(2)">🍖</button>
+        <button @onclick="() => LevelUpMethod(3)">🔪 ++</button>
     </div>
 }
