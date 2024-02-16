@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevineLeNombre1_20", "DevineLeNombre1_20\DevineLeNombre1_20.csproj", "{325461CF-75BA-4552-AC8E-8251E685C24F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormulaireMarier", "FormulaireMarier\FormulaireMarier.csproj", "{03F728C0-620D-48E2-918A-78AF547536C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FormulaireMarier", "FormulaireMarier\FormulaireMarier.csproj", "{03F728C0-620D-48E2-918A-78AF547536C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
