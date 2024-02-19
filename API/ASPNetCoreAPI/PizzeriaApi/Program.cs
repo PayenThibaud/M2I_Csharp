@@ -1,24 +1,13 @@
 
 using PizzeriaApi.Extension;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-
 builder.InjectDependancies();
-
-
-//builder.Services.AddCors(options =>
-//{
-//    options.AddPolicy("allConnections", options =>
-//    {
-//        options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-//    });
-//    options.AddPolicy("angularApp", options =>
-//    {
-//        options.WithOrigins("https://angularadress:angularport").WithMethods("GET").WithHeaders("application/json");
-//    });
-//});
 
 var app = builder.Build();
 
@@ -31,14 +20,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// c'est ici que l'on va utiliser le middleware des cors (cross-origin requests)
-// on le laisse vide lorsque l'on utilise des policy sur nos contrôlleurs/actions (ne pas oublier le service de configuration des cors)
-// on peut aussi préciser une policy qui s'appliquera sur toute l'application avec son nom
-//app.UseCors("allConnections");
-// cette version permet d'appliquer une policy globale sans la nommer:
-app.UseCors(options =>
+app.UseCors(option =>
 {
-    options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+    option.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
 });
 
 app.UseAuthentication();

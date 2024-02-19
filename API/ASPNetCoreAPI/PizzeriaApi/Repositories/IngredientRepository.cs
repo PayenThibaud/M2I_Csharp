@@ -1,82 +1,72 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PizzeriaApi.Data;
 using PizzeriaApi.Models;
+using PizzeriaApi.Repositories;
+using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace PizzeriaApi.Repositories
 {
     public class IngredientRepository : IRepository<Ingredient>
     {
-        private readonly AppDbContext _db;
-
-        public IngredientRepository(AppDbContext db)
+        private ApplicationDbContext _dbContext { get; }
+        public IngredientRepository(ApplicationDbContext dbContext)
         {
-            _db = db;
+            _dbContext = dbContext;
         }
 
         // CREATE
-        public async Task<Ingredient?> Add(Ingredient ingredient)
+        public async Task<int> Add(Ingredient ingredient)
         {
-            var addEntry = await _db.Ingredients.AddAsync(ingredient);
-            await _db.SaveChangesAsync();
-
-            if (addEntry.Entity.Id > 0)
-                return addEntry.Entity;
-
-            return null;
+            var addedObj = await _dbContext.Ingredients.AddAsync(ingredient);
+            await _dbContext.SaveChangesAsync();
+            return addedObj.Entity.Id;
         }
 
         // READ
-        public async Task<Ingredient?> Get(int id)
+        public async Task<Ingredient?> GetById(int id)
         {
-            return await _db.Ingredients.FirstOrDefaultAsync(c => c.Id == id);
+            return await _dbContext.Ingredients.FindAsync(id);
         }
-
         public async Task<Ingredient?> Get(Expression<Func<Ingredient, bool>> predicate)
         {
-            return await _db.Ingredients.FirstOrDefaultAsync(predicate);
+            return await _dbContext.Ingredients.FirstOrDefaultAsync(predicate);
         }
-
-        public async Task<IEnumerable<Ingredient>> GetAll()
+        public async Task<List<Ingredient>> GetAll()
         {
-            return await _db.Ingredients.ToListAsync();
+            return await _dbContext.Ingredients.ToListAsync();
         }
-
-        public async Task<IEnumerable<Ingredient>> GetAll(Expression<Func<Ingredient, bool>> predicate)
+        public async Task<List<Ingredient>> GetAll(Expression<Func<Ingredient, bool>> predicate)
         {
-            return await _db.Ingredients.Where(predicate).ToListAsync();
+            return await _dbContext.Ingredients.Where(predicate).ToListAsync();
         }
 
         // UPDATE
-        public async Task<Ingredient?> Update(Ingredient ingredient)
+        public async Task<bool> Update(Ingredient ingredient)
         {
-            var ingredientFromDb = await _db.Ingredients.FirstOrDefaultAsync(i => i.Id == ingredient.Id);
+            var ingredientFromDb = await GetById(ingredient.Id);
 
             if (ingredientFromDb == null)
-                return null;
+                return false;
 
-            // Update properties
             if (ingredientFromDb.Name != ingredient.Name)
                 ingredientFromDb.Name = ingredient.Name;
-            if (ingredientFromDb.Description != ingredient.Description)
-                ingredientFromDb.Description = ingredient.Description;
+            if (ingredientFromDb.PizzaId != ingredient.PizzaId)
+                ingredientFromDb.PizzaId = ingredient.PizzaId;
 
-            await _db.SaveChangesAsync();
-
-            return ingredientFromDb;
+            return await _dbContext.SaveChangesAsync() > 0;
         }
 
         // DELETE
         public async Task<bool> Delete(int id)
         {
-            var ingredientFromDb = await Get(id);
-
-            if (ingredientFromDb == null)
+            var ingredient = await GetById(id);
+            if (ingredient == null)
                 return false;
-
-            _db.Ingredients.Remove(ingredientFromDb);
-
-            return await _db.SaveChangesAsync() > 0;
+            _dbContext.Ingredients.Remove(ingredient);
+            return await _dbContext.SaveChangesAsync() > 0;
         }
     }
 }

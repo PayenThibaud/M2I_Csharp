@@ -2,21 +2,18 @@
 
 namespace PizzeriaApi.Repositories
 {
-    public interface IRepository<TEntity> where TEntity : class
+    public interface IRepository<TEntity>
     {
-        Task<TEntity?> Add(TEntity entity);
-
+        //CREATE
+        Task<int> Add(TEntity contact);
         // READ
-        Task<TEntity?> Get(int id);
+        Task<TEntity?> GetById(int id);
         Task<TEntity?> Get(Expression<Func<TEntity, bool>> predicate);
-        Task<IEnumerable<TEntity>> GetAll(); // toutes les entités
-        Task<IEnumerable<TEntity>> GetAll(Expression<Func<TEntity, bool>> predicate);
-
+        Task<List<TEntity>> GetAll();
+        Task<List<TEntity>> GetAll(Expression<Func<TEntity, bool>> predicate);
         // UPDATE
-        Task<TEntity?> Update(TEntity entity);
-
+        Task<bool> Update(TEntity contact);
         // DELETE
         Task<bool> Delete(int id);
-
     }
 }

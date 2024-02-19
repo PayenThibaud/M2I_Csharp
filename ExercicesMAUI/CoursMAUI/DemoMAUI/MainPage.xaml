@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DemoMAUI.MainPage">
+
+    <ContentPage.BackgroundImageSource>
+        <FileImageSource File="tableau.png"/>
+    </ContentPage.BackgroundImageSource>
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <Image
+                Source="nbmystere.png"
+                HeightRequest="185"
+                Aspect="AspectFit"
+                SemanticProperties.Description="dot net bot in a race car number eight" />
+
+            <Label
+                Text="Nombre Mystère ! v.0.2"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1" />
+
+            <Label
+                Text="Bienvenue sur notre super jeu ! vous devez trouver le nombre mystère en rentrant un chiffre puis cliquer sur le gros bouton test ! =)"
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="Bienvenue" />
+
+            <Entry x:Name="nombreEntry" Placeholder="Enter a number" 
+       HeightRequest="50" TextColor="White" 
+       FontSize="18" PlaceholderColor="LightGray" />
+            <Button
+                Text="Test"
+                Clicked="OnTestNumberClicked"
+                HorizontalOptions="Fill" />
+
+            <Label x:Name="resultatLabel" Margin="0,20,0,0" HorizontalOptions="Center" FontSize="18"/>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

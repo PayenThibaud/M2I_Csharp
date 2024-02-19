@@ -8,7 +8,7 @@ namespace ProjetPizza.Services
 {
     public class PizzaFakeDbService : IPizzaService
     {
-        private int _lastId = 0;
+        private int _lastId = 8;
         private List<Pizza> _pizza = new List<Pizza>();
         private List<Ingredient> _ingredient = new List<Ingredient>();
 

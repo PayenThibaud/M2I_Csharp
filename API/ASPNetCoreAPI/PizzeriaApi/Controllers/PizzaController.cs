@@ -5,124 +5,113 @@ using PizzeriaApi.Models;
 using PizzeriaApi.Repositories;
 using AutoMapper;
 using PizzeriaApi.DTOs;
-using System.Reflection.Metadata;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using PizzeriaApi.Helpers;
+
 
 namespace PizzeriaApi.Controllers
 {
-    [Route("pizzas")]
+    [Route("api/pizzas")]
     [ApiController]
-    [Authorize]
-    public class PizzaController : ControllerBase
+    //[Authorize(Policy = Constants.PolicyAdmin)]
+    public class PizzasController : ControllerBase
     {
-        private readonly IRepository<Pizza> _repository;
-        private readonly IMapper _mapper;
+        private readonly IRepository<Pizza> _pizzaRepository;
+        private readonly IRepository<Ingredient> _ingredientRepository;
 
-        public PizzaController(IRepository<Pizza> repository,
-                                 IMapper mapper)
+        public PizzasController(IRepository<Pizza> pizzaRepository,
+                                IRepository<Ingredient> ingredientRepository)
         {
-            _repository = repository;
-            _mapper = mapper;
+            _pizzaRepository = pizzaRepository;
+            _ingredientRepository = ingredientRepository;
         }
 
-        //GET /pizzas
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        //[Authorize(Roles = Constants.RoleUser+","+Constants.RoleAdmin)]
+        public async Task<IActionResult> Menu()
         {
-            //return Ok(_repository.GetAll());
-            IEnumerable<Pizza> pizzas = await _repository.GetAll();
-
-            IEnumerable<PizzaDTO> pizzaDTOs = _mapper.Map<IEnumerable<PizzaDTO>>(pizzas)!;
-            //IEnumerable<pizzaDTO> pizzaDTOs = _mapper.Map<IEnumerable<pizza>, IEnumerable<pizzaDTO>>(pizzas)!;
-
-            // possible d'ajouter des modification par rapport aux DTOs ici
-
-            return Ok(pizzaDTOs);
+            return Ok(await _pizzaRepository.GetAll());
         }
 
-        //GET /pizzas/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var pizza = await _repository.Get(id);
-
-            if (pizza == null)
-                return NotFound(new
-                {
-                    Message = "There is no Pizza with this Id."
-                });
-
-            PizzaDTO pizzaDTO = _mapper.Map<PizzaDTO>(pizza)!;
-
-            return Ok(new
-            {
-                Message = "Pizza found.",
-                Pizza = pizzaDTO
-            });
+            return Ok(await _pizzaRepository.GetById(id));
         }
 
-        //POST /pizzas
         [HttpPost]
-        [Authorize(Roles = Constants.RoleAdmin)]
-        public async Task<IActionResult> Post([FromBody] PizzaDTO pizzaDTO)
+        public async Task<IActionResult> AddPizza([FromBody] Pizza pizza)
         {
-            var pizza = _mapper.Map<Pizza>(pizzaDTO)!;
+            var pizzaId = await _pizzaRepository.Add(pizza);
 
-            var pizzaADD = await _repository.Add(pizza);
+            if (pizzaId > 1)
+                return CreatedAtAction(nameof(Menu), "Pizza added");
 
-            var pizzaADDDTO = _mapper.Map<PizzaDTO>(pizzaADD)!;
-
-            if (pizzaADDDTO != null)
-                return CreatedAtAction(nameof(GetById),
-                                       new { id = pizzaADDDTO.Id },
-                                       new
-                                       {
-                                           Message = "Pizza Added.",
-                                           Pizza = pizzaADDDTO
-                                       });
-
-            return BadRequest("Something went wrong...");
+            return BadRequest("Something went wrong");
         }
 
-        //PUT /pizzas/4
+        [HttpPost("add-topping/{pizzaId}")]
+        public async Task<IActionResult> AddTopping(int pizzaId, [FromBody] Ingredient ingredient)
+        {
+            if (await _pizzaRepository.GetById(pizzaId) == null)
+                return BadRequest("Pizza not found");
+
+            ingredient.PizzaId = pizzaId;
+            int ingredientId = await _ingredientRepository.Add(ingredient);
+
+            if (ingredientId > 0)
+                return Ok("Topping added");
+
+            return BadRequest("Something went wrong");
+        }
+
+        [HttpDelete("remove-topping/{pizzaId}/{toppingId}")]
+        public async Task<IActionResult> RemoveTopping(int pizzaId, int toppingId)
+        {
+            if (await _pizzaRepository.GetById(pizzaId) == null)
+                return BadRequest("Pizza not found");
+
+            var ing = await _ingredientRepository.GetById(toppingId);
+
+            if (ing == null)
+                return BadRequest("Topping not found");
+
+            if (ing.PizzaId != pizzaId)
+                return BadRequest("Topping is on another Pizza");
+
+            if (await _ingredientRepository.Delete(ing.Id))
+                return Ok("Topping removed");
+
+            return BadRequest("Something went wrong");
+        }
+
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put([FromRoute] int id, [FromBody] PizzaDTO pizzaDTO)
+        public async Task<IActionResult> UpdatePizza(int id, [FromBody] Pizza pizza)
         {
-            var pizzaFromDb = await _repository.Get(id);
+            var pizz = await _pizzaRepository.GetById(id);
+            if (pizz == null)
+                return BadRequest("Pizza not found");
 
-            if (pizzaFromDb == null)
-                return NotFound("There is no Pizza with this Id.");
-
-            pizzaDTO.Id = id; // nécessaire dans le cas où l'id n'est pas ou mal définit dan la requete
-
-            var pizza = _mapper.Map<Pizza>(pizzaDTO)!;
-
-            var pizzaUpdated = await _repository.Update(pizza);
-
-            var pizzaUpdatedDTO = _mapper.Map<PizzaDTO>(pizzaUpdated);
-
-            if (pizzaUpdated != null)
-                return Ok(new
-                {
-                    Message = "Pizza Updated.",
-                    Pizza = pizzaUpdatedDTO
-                });
+            pizza.Id = id;
+            if (await _pizzaRepository.Update(pizza))
+                return Ok("Pizza Updated !");
 
             return BadRequest("Something went wrong...");
         }
 
-
-        //DELETE /pizzas/12
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> RemovePizza(int id)
         {
-            if (await _repository.Delete(id))
-                return Ok("Pizza Deleted");
+            var pizz = await _pizzaRepository.GetById(id);
+            if (pizz == null)
+                return BadRequest("Pizza not found");
 
-            //return NotFound("pizza Not Found");
+            if (await _pizzaRepository.Delete(id))
+                return Ok("Pizza Updated !");
+
             return BadRequest("Something went wrong...");
         }
-
-
     }
 }
