@@ -23,18 +23,31 @@
                 SemanticProperties.HeadingLevel="Level1" />
 
             <Label
-                Text="Bienvenue sur notre super jeu ! vous devez trouver le nombre mystère en rentrant un chiffre puis cliquer sur le gros bouton test ! =)"
+                Text="Bienvenue sur notre super jeu ! Vous devez trouver le nombre mystère en rentrant un chiffre puis cliquer sur le gros bouton test ! =)" 
                 Style="{StaticResource SubHeadline}"
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Bienvenue" />
 
-            <Entry x:Name="nombreEntry" Placeholder="Enter a number" 
-       HeightRequest="50" TextColor="White" 
-       FontSize="18" PlaceholderColor="LightGray" />
+            <Entry
+                x:Name="nombreEntry" Placeholder="Enter a number" 
+                HeightRequest="50" TextColor="White" 
+                FontSize="18" PlaceholderColor="LightGray" />
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" x:Name="end">
+            </StackLayout>
+
             <Button
+                x:Name="testButton"
                 Text="Test"
                 Clicked="OnTestNumberClicked"
                 HorizontalOptions="Fill" />
+
+            <Button
+                x:Name="resetButton"
+                Text="Reset"
+                Clicked="OnResetClicked"
+                HorizontalOptions="Fill" 
+                IsVisible="false" />
 
             <Label x:Name="resultatLabel" Margin="0,20,0,0" HorizontalOptions="Center" FontSize="18"/>
         </VerticalStackLayout>

@@ -1,33 +1,64 @@
 ﻿using System;
+using System.Threading.Tasks;
+using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 
 namespace DemoMAUI
 {
     public partial class MainPage : ContentPage
     {
+        int nombreEssaisRestants = 10;
         int nombreMystere;
         Random random = new Random();
 
         public MainPage()
         {
             InitializeComponent();
-            nombreMystere = GenerateRandomNumber(1, 100); // Générer un nombre mystère entre 1 et 100
+            BindingContext = this;
+            nombreMystere = GenerateRandomNumber(1, 100);
+            UpdateImagesVisibility();
         }
 
         private void OnTestNumberClicked(object sender, EventArgs e)
         {
-            // Récupérer le nombre saisi dans l'Entry
-            if (int.TryParse(nombreEntry.Text, out int nombreSaisi))
+            nombreEssaisRestants--;
+
+            UpdateImagesVisibility();
+
+            if (nombreEssaisRestants == 0)
             {
-                // Appeler la méthode CompareNumbers pour comparer le nombre saisi au nombre mystère
-                string resultat = CompareNumbers(nombreSaisi);
-                resultatLabel.Text = resultat;
+                resultatLabel.Text = "Perdu ! Le nombre mystère était : " + nombreMystere;
+                resultatLabel.TextColor = Microsoft.Maui.Graphics.Colors.Red;
+                nombreEntry.IsVisible = false;
+                nombreEntry.IsEnabled = false;
+                testButton.IsVisible = false;
+                resetButton.IsVisible = true;
             }
             else
             {
-                resultatLabel.Text = "Veuillez saisir un nombre valide.";
+                if (int.TryParse(nombreEntry.Text, out int nombreSaisi))
+                {
+
+                    string resultat = CompareNumbers(nombreSaisi);
+                    resultatLabel.Text = resultat;
+
+                    if (resultat == "Congratulations! You've found the mystery number!")
+                    {
+                        nombreEntry.IsVisible = false;
+                        nombreEntry.IsEnabled = false;
+                        testButton.IsVisible = false;
+                        resultatLabel.Text = "Bravo ! Tu as gagné !";
+                        resultatLabel.TextColor = Microsoft.Maui.Graphics.Colors.Green;
+                        resetButton.IsVisible = true;
+                    }
+                }
+                else
+                {
+                    resultatLabel.Text = "Veuillez saisir un nombre valide.";
+                }
             }
         }
+
 
         private int GenerateRandomNumber(int minValue, int maxValue)
         {
@@ -53,8 +84,31 @@ namespace DemoMAUI
             }
         }
 
+        private void UpdateImagesVisibility()
+        {
+            nombreEntry.IsVisible = nombreEssaisRestants > 0;
+            nombreEntry.IsEnabled = nombreEssaisRestants > 0;
+            testButton.IsVisible = nombreEssaisRestants > 0;
+            resetButton.IsVisible = nombreEssaisRestants == 0;
 
+            end.Children.Clear();
 
+            for (int i = 0; i < nombreEssaisRestants; i++)
+            {
+                var image = new Image { Source = "end.png", HeightRequest = 30, WidthRequest = 30 };
+                image.RotateTo(360, 1000); 
+                end.Children.Add(image);
+            }
+        }
 
+        private void OnResetClicked(object sender, EventArgs e)
+        {
+            nombreEssaisRestants = 10;
+            nombreMystere = GenerateRandomNumber(1, 100);
+
+            UpdateImagesVisibility();
+
+            resultatLabel.Text = string.Empty;
+        }
     }
 }

@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <Shell
     x:Class="DemoMAUI.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -7,9 +6,26 @@
     Shell.FlyoutBehavior="Disabled"
     Title="DemoMAUI">
 
+    <Shell.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <Shell.Style>
+        <Style TargetType="Shell">
+            <Setter Property="BackgroundColor" Value="{StaticResource DarkGreenColor}" />
+        </Style>
+    </Shell.Style>
+
+    <Shell.TitleView>
+        <Label Text="Nombre mystère" TextColor="{StaticResource GoldColor}" FontSize="20"/>
+    </Shell.TitleView>
+
+
     <ShellContent
-        Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
-
 </Shell>

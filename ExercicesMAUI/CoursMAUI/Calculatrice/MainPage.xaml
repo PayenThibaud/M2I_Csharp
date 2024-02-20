@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Calculatrice.MainPage">
+
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+
+            </Grid.ColumnDefinitions>
+
+            <!-- Row 1 -->
+
+            <BoxView Grid.Row="0" Grid.RowSpan="8" Grid.Column="5" BackgroundColor="#FFD700"/>
+
+            <!-- Row 2 -->
+
+            <BoxView Grid.Row="2" Grid.RowSpan="8" Grid.Column="5" BackgroundColor="#FFD700"/>
+
+
+            <!-- Row 3 -->
+
+            <Label x:Name="DisplayLabel" Text="0" Grid.Row="1" Grid.ColumnSpan="4" FontSize="24" HorizontalOptions="End" BackgroundColor="#FFD700"/>
+            
+            <Button Text="7" Grid.Row="3" Grid.Column="1" Clicked="OnNumberClicked"/>
+            <Button Text="8" Grid.Row="3" Grid.Column="2" Clicked="OnNumberClicked"/>
+            <Button Text="9" Grid.Row="3" Grid.Column="3" Clicked="OnNumberClicked"/>
+            <Button Text="/" Grid.Row="3" Grid.Column="4" Clicked="OnOperatorClicked"/>
+
+            <!-- Row 4 -->
+            <Button Text="4" Grid.Row="4" Grid.Column="1" Clicked="OnNumberClicked"/>
+            <Button Text="5" Grid.Row="4" Grid.Column="2" Clicked="OnNumberClicked"/>
+            <Button Text="6" Grid.Row="4" Grid.Column="3" Clicked="OnNumberClicked"/>
+            <Button Text="*" Grid.Row="4" Grid.Column="4" Clicked="OnOperatorClicked"/>
+
+            <!-- Row 5 -->
+            <Button Text="1" Grid.Row="5" Grid.Column="1" Clicked="OnNumberClicked"/>
+            <Button Text="2" Grid.Row="5" Grid.Column="2" Clicked="OnNumberClicked"/>
+            <Button Text="3" Grid.Row="5" Grid.Column="3" Clicked="OnNumberClicked"/>
+            <Button Text="-" Grid.Row="5" Grid.Column="4" Clicked="OnOperatorClicked"/>
+
+            <!-- Row 6 -->
+            <Button Text="0" Grid.Row="6" Grid.Column="1" Clicked="OnNumberClicked"/>
+            <Button Text="." Grid.Row="6" Grid.Column="2" Clicked="OnDecimalClicked"/>
+            <Button Text="=" Grid.Row="6" Grid.Column="3" Clicked="OnEqualsClicked"/>
+            <Button Text="+" Grid.Row="6" Grid.Column="4" Clicked="OnOperatorClicked"/>
+
+            <!-- Row 7 -->
+
+            <!-- Row 8 -->
+
+            <!-- Row 9 -->
+
+            <!-- Row 10 -->
+
+            <!-- Row 11 -->
+
+            <!-- Row 12 -->
+
+            <!-- Row 13 -->
+
+        </Grid>
+    </ScrollView>
+</ContentPage>
