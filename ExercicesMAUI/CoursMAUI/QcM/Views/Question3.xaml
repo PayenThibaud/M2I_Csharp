@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QcM.Views.Question3"
+             Title="Question3">
+    <VerticalStackLayout>
+        <Grid Padding="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Question Label -->
+            <Label Text="Quelle est la capitale de la France"
+           FontSize="24"
+           VerticalOptions="Center" 
+           HorizontalOptions="Center"
+           Grid.Row="0" />
+
+            <!-- Buttons -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Text="France"
+                Clicked="OnPopClicked"
+                Margin="5"
+                BackgroundColor="#3498db"
+                TextColor="White"
+                Grid.Column="0"/>
+                <Button Text="Paris"
+                Clicked="OnPushClicked"
+                Margin="5"
+                BackgroundColor="#2ecc71"
+                TextColor="White"
+                Grid.Column="1"/>
+                <Button Text="F"
+                Clicked="OnPopAllClicked"
+                Margin="5"
+                BackgroundColor="#e74c3c"
+                TextColor="White"
+                Grid.Column="2"/>
+            </Grid>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

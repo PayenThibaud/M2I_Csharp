@@ -5,7 +5,9 @@ VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoMAUI", "DemoMAUI\DemoMAUI.csproj", "{CED0E4AE-F96E-430B-A963-EDFC54AB503D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculatrice", "Calculatrice\Calculatrice.csproj", "{7B282602-D9F7-48AC-9C1D-4A2FEBD242AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculatrice", "Calculatrice\Calculatrice.csproj", "{7B282602-D9F7-48AC-9C1D-4A2FEBD242AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QcM", "QcM\QcM.csproj", "{4D6D47E9-C3B9-4480-B36C-94B5A2530B4A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,12 @@ Global
 		{7B282602-D9F7-48AC-9C1D-4A2FEBD242AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B282602-D9F7-48AC-9C1D-4A2FEBD242AB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7B282602-D9F7-48AC-9C1D-4A2FEBD242AB}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{4D6D47E9-C3B9-4480-B36C-94B5A2530B4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D6D47E9-C3B9-4480-B36C-94B5A2530B4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D6D47E9-C3B9-4480-B36C-94B5A2530B4A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4D6D47E9-C3B9-4480-B36C-94B5A2530B4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D6D47E9-C3B9-4480-B36C-94B5A2530B4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D6D47E9-C3B9-4480-B36C-94B5A2530B4A}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
