@@ -59,8 +59,6 @@ namespace PizzAPI.Repositories
                 userFromDb.Email = user.Email;
             if (userFromDb.PassWord != user.PassWord)
                 userFromDb.PassWord = user.PassWord;
-            if (userFromDb.IsAdmin != user.IsAdmin)
-                userFromDb.IsAdmin = user.IsAdmin;
 
             return await _dbContext.SaveChangesAsync() > 0;
         }

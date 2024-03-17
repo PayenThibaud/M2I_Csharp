@@ -15,7 +15,7 @@ namespace Playtypuces.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=(localdb)\\Playtypuce; Database=Playtypuces;");
+            optionsBuilder.UseSqlServer(@"Server=tcp:m2idotnet.database.windows.net,1433;Initial Catalog=ThibaudDBB;Persist Security Info=False;User ID=m2iadmin;Password=p@ssword1234;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
 
     }
