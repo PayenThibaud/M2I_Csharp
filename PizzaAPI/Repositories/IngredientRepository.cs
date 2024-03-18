@@ -49,8 +49,6 @@ namespace PizzAPI.Repositories
 
             if (ingredientFromDb.Name != ingredient.Name)
                 ingredientFromDb.Name = ingredient.Name;
-            if (ingredientFromDb.PizzaId != ingredient.PizzaId)
-                ingredientFromDb.PizzaId = ingredient.PizzaId;
 
             return await _dbContext.SaveChangesAsync() > 0;
         }
