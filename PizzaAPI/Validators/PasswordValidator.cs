@@ -30,8 +30,8 @@ namespace PizzCore.Validators
                     ErrorMessage += "Password should contains at least two upper case letters. ";
                 if (!hasNumber.IsMatch(input))
                     ErrorMessage += "Password should contains at least two numeric characters. ";
-                if (!hasSymbols.IsMatch(input))
-                    ErrorMessage += "Password should contains at least two special characters. ";
+                //if (!hasSymbols.IsMatch(input))
+                //    ErrorMessage += "Password should contains at least two special characters. ";
                 if (ErrorMessage == string.Empty)
                     return true;
             }
