@@ -16,7 +16,7 @@ namespace PizzCore.Validators
             else
             {
                 //Les regexs à corriger
-                var hasNumber = new Regex(@"[0-9]{2}");
+                var hasNumber = new Regex(@"[0-9]{4}");
                 var hasUpperLetters = new Regex(@"[A-Z]{2}");
                 var hasEnoughChars = new Regex(@".{8,15}");
                 var hasLowerLetters = new Regex(@"[a-z]{2}");
@@ -29,7 +29,7 @@ namespace PizzCore.Validators
                 if (!hasUpperLetters.IsMatch(input))
                     ErrorMessage += "Password should contains at least two upper case letters. ";
                 if (!hasNumber.IsMatch(input))
-                    ErrorMessage += "Password should contains at least two numeric characters. ";
+                    ErrorMessage += "Password should contains at least four numeric characters. ";
                 //if (!hasSymbols.IsMatch(input))
                 //    ErrorMessage += "Password should contains at least two special characters. ";
                 if (ErrorMessage == string.Empty)
