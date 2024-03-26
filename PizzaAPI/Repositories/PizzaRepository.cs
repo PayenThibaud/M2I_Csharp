@@ -51,8 +51,8 @@ namespace PizzAPI.Repositories
                 pizzaFromDb.Name = pizza.Name;
             if (pizzaFromDb.Price != pizza.Price)
                 pizzaFromDb.Price = pizza.Price;
-            if (pizzaFromDb.ImageLink != pizza.ImageLink)
-                pizzaFromDb.ImageLink = pizza.ImageLink;
+            //if (pizzaFromDb.ImageLink != pizza.ImageLink)
+            //    pizzaFromDb.ImageLink = pizza.ImageLink;
 
             // mettre à jour les ingrédients :
             if (pizza.Ingredients != null)
