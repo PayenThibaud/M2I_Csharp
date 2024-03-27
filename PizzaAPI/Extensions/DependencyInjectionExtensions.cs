@@ -16,7 +16,7 @@ namespace PizzAPI.Extensions
     {
         public static void InjectDependancies(this WebApplicationBuilder builder)
         {
-            // ajouter .AddJsonOptions(...) pour éviter les cycles/la redondance (un ingrédient qui a sa pizza dans le json qui a elle même son ingrédient
+            // ajouter .AddJsonOptions(...) pour éviter les cycles/la redondance (un ingrédient qui a sa pizza dans le json qui a elle même son ingrédient 
             builder.Services.AddControllers().AddJsonOptions(x =>
                             x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
